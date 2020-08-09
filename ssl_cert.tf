@@ -2,7 +2,7 @@
 data "aws_route53_zone" "public" {
   name         = var.demo_dns_zone
   private_zone = false
-  provider     = aws.account_route53
+  #provider     = aws.account_route53
 }
 
 # This creates an SSL certificate
@@ -18,7 +18,7 @@ resource "aws_route53_record" "cert_validation" {
   zone_id  = data.aws_route53_zone.public.id
   records  = [aws_acm_certificate.myapp.domain_validation_options.0.resource_record_value]
   ttl      = 60
-  provider = aws.account_route53
+  #provider = aws.account_route53
 }
 
 # This tells terraform to cause the route53 validation to happen
@@ -37,7 +37,7 @@ resource "aws_route53_record" "myapp" {
     zone_id                = aws_alb.mylb.zone_id
     evaluate_target_health = false
   }
-  provider = aws.account_route53
+  #provider = aws.account_route53
 }
 
 output "testing" {
