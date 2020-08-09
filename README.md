@@ -17,7 +17,7 @@
 * terraform destroy --auto-approve
 
 ## Links
-[How to automate DNS and SSL with Terraform] (https://www.oss-group.co.nz/blog/automated-certificates-aws)
+[How to automate DNS and SSL with Terraform](https://www.oss-group.co.nz/blog/automated-certificates-aws)
 
 ## Outputs
 ```
