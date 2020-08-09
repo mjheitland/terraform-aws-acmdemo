@@ -5,6 +5,10 @@ data "aws_route53_zone" "public" {
   #provider     = aws.account_route53
 }
 
+#-------------
+#--- Resources
+#-------------
+
 # This creates an SSL certificate
 resource "aws_acm_certificate" "myapp" {
   domain_name       = aws_route53_record.myapp.fqdn
@@ -40,6 +44,30 @@ resource "aws_route53_record" "myapp" {
   #provider = aws.account_route53
 }
 
+#-----------
+#--- Outputs
+#-----------
+
 output "testing" {
   value = "Test this demo code by going to https://${aws_route53_record.myapp.fqdn} and checking your have a valid SSL cert"
+}
+
+output "fqdn" {
+  value = aws_route53_record.myapp.fqdn
+}
+
+output "validation_options" {
+  value = aws_acm_certificate.myapp.domain_validation_options.0
+}
+
+output "zone_id" {
+  value = data.aws_route53_zone.public.id
+}
+
+output "certificate_arn" {
+  value = aws_acm_certificate.myapp.arn
+}
+
+output "route53_record_name" {
+  value = aws_route53_record.myapp.name
 }
